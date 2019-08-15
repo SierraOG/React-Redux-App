@@ -10,15 +10,15 @@ const LaunchList = props => {
     return (
         <>
         <h1>Find Launches!</h1>
-        <button onClick={props.getLaunch}>
-          {props.isLoading ? (
-            <Loader type="tailspin" color="#00BFFF" height="15" width="100" />
+        <button onClick={props.getLaunch}> Get the next 5 rocket launches</button>
+        {props.isLoading ? (
+            <Loader type="TailSpin" color="#00BFFF" height="100" width="100" />
           ) : (
-            'Get The Next 5 Launches'
+            <div style={{display: 'flex', justifyContent: 'space-evenly', flexFlow: 'wrap'}}>
+            {props.launches &&
+                props.launches.map(launch => <LaunchCard key={launch.id} launch={launch} />)}
+            </div>
           )}
-        </button>
-        {props.launches &&
-          props.launches.map(launch => <LaunchCard launch={launch} />)}
       </>
     );
 };
